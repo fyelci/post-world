@@ -1,0 +1,21 @@
+sudo: required
+
+language: node_js
+
+node_js:
+  - 10
+jobs:
+  include:
+    - stage: 'Storybook Build'
+      name: 'Storybook Build'
+      script: npm run build-storybook
+    - stage: 'Run build'
+      name: 'Run build'
+      script: npm run build
+
+after_success:
+  - pip install --user awscli # install aws cli w/o sudo
+  - export PATH=$PATH:$HOME/.local/bin # put aws in the path
+  - eval $(aws ecr get-login --no-include-email --region us-east-1)
+  - aws s3 cp ./build/ s3://post-world/ --recursive
+  - aws s3 cp ./storybook-static/ s3://post-world-storybook/ --recursive
