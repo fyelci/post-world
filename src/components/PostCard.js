@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function PostCard(props) {
-  const { title, detail, pictureUrl, author, authorProfilePic, publishDate } = props.card;
+  const { title, detail, pictureUrl } = props.card;
   const classes = useStyles();
 
   return (
