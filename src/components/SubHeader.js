@@ -37,12 +37,12 @@ export default function SubHeader() {
           <Grid container spacing={2} justify="center">
             <Grid item>
               <Button variant="contained" color="primary">
-                Main call to action
+                Discover
               </Button>
             </Grid>
             <Grid item>
               <Button variant="outlined" color="primary">
-                Secondary action
+                Learn More
               </Button>
             </Grid>
           </Grid>

@@ -27,11 +27,11 @@ export default function Home() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/api/posts`)
+    axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/posts`)
       .then(res => {
         setPosts(res.data.posts);
       });
-  });
+  }, []);
 
 
   return (

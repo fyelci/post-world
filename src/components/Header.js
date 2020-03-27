@@ -22,7 +22,7 @@ export default function Header() {
       <Toolbar>
         <CameraIcon className={classes.icon}/>
         <Typography variant="h6" color="inherit" noWrap>
-          Album layout
+          Post World
         </Typography>
       </Toolbar>
     </AppBar>
