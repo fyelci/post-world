@@ -4,11 +4,12 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import Grow from '@material-ui/core/Grow';
 
-import Header from './Header';
-import PostCard from './PostCard';
-import SubHeader from './SubHeader';
-import Footer from './Footer';
+import Header from '../components/Header';
+import PostCard from '../components/PostCard';
+import SubHeader from '../components/SubHeader';
+import Footer from '../components/Footer';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -26,7 +27,7 @@ export default function Home() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    axios.get(`http://ec2co-ecsel-15xpk1flld7ze-1331902818.us-east-1.elb.amazonaws.com:3001/api/posts`)
+    axios.get(`http://localhost:3001/api/posts`)
       .then(res => {
         setPosts(res.data.posts);
       });
@@ -43,8 +44,15 @@ export default function Home() {
       <main>
         <Container className={classes.cardGrid} maxWidth="md">
           <Grid container spacing={4}>
-            {posts.map((card) => (
-              <PostCard key={card._id} card={card}/>
+            {posts.map((card, index) => (
+              <Grow
+                in={true}
+                key={card._id}
+                style={{ transformOrigin: '0 0 0' }}
+                {...({ timeout: 1000 * index })}
+              >
+                <PostCard card={card}/>
+              </Grow>
             ))}
           </Grid>
         </Container>
